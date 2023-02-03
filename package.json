@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/AlexanderKolomiiets/serverless-academy/issues"
   },
-  "homepage": "https://github.com/AlexanderKolomiiets/serverless-academy#readme"
+  "homepage": "https://github.com/AlexanderKolomiiets/serverless-academy#readme",
+  "devDependencies": {
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1"
+  }
 }
