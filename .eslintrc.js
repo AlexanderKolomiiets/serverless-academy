@@ -13,5 +13,6 @@ module.exports = {
   rules: {
     'no-restricted-globals': ['error', 'event'],
     'no-console': 'off',
+    'no-loop-func': 'off',
   },
 };

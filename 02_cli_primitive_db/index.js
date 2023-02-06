@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import inquirer from 'inquirer';
 import { readFileSync, writeFileSync } from 'fs';
 
@@ -33,33 +34,47 @@ const questions = [
   },
 ];
 
+const searchQuestions = [
+  {
+    type: 'confirm',
+    name: 'displayDB',
+    message: 'Would you to search values in DB? ',
+    default: false,
+  },
+  {
+    type: 'input',
+    name: 'searchedName',
+    message: "Enter user's name you wanna find in DB: ",
+    when(value) {
+      return value.displayDB;
+    },
+  },
+];
+
 const launchDB = async () => {
   const prevDB = readFileSync('db.txt');
   let currentDB = prevDB.length ? JSON.parse(prevDB) : [];
+  let isNotCancelled = true;
 
-  await inquirer.prompt(questions)
-    .then((res) => {
-      currentDB = res.username ? [...currentDB, res] : currentDB;
-    });
+  while (isNotCancelled) {
+    await inquirer.prompt(questions)
+      .then((res) => {
+        if (!res.username) {
+          isNotCancelled = false;
+          return;
+        }
+        currentDB = [...currentDB, res];
+      })
+      .catch((error) => {
+        if (error.isTtyError) {
+          // Prompt couldn't be rendered in the current environment
+        } else {
+          // Something else went wrong
+        }
+      });
+  }
 
   writeFileSync('db.txt', JSON.stringify(currentDB, null, 2));
-
-  const searchQuestions = [
-    {
-      type: 'confirm',
-      name: 'displayDB',
-      message: 'Would you to search values in DB? ',
-      default: false,
-    },
-    {
-      type: 'input',
-      name: 'searchedName',
-      message: "Enter user's name you wanna find in DB:",
-      when(value) {
-        return value.displayDB;
-      },
-    },
-  ];
 
   await inquirer.prompt(searchQuestions)
     .then((res) => {
