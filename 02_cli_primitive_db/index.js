@@ -7,6 +7,9 @@ const questions = [
     type: 'input',
     name: 'username',
     message: 'Enter the user name. To cancel press Enter: ',
+    filter(value) {
+      return value.trim();
+    },
   },
   {
     type: 'list',

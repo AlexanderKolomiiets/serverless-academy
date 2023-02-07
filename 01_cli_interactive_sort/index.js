@@ -46,12 +46,18 @@ const question = () => {
   terminal.question(
     'Hello. Enter 10 words or digits dividing them in spaces: ',
     (answer) => {
+      const arr = answer.trim().split(' ');
       if (answer === 'exit') {
         terminal.close();
         return;
       }
       if (!answer.trim()) {
         console.log('Don`t enter empty value. Try again');
+        question();
+        return;
+      }
+      if (arr.length > 10 || arr.length < 2) {
+        console.log('You should enter 2-10 values in a row');
         question();
         return;
       }
@@ -64,8 +70,6 @@ const question = () => {
           + 'f. Display only unique values from the set of words and numbers.\n\n'
           + 'Enter a letter to choose an operation: ',
         (choice) => {
-          const arr = answer.split(' ');
-
           switch (choice) {
             case 'a':
               console.log(sortWordsByAlph(arr));
