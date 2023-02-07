@@ -17,7 +17,7 @@ const questions = [
     message: 'Choose your gender: ',
     choices: ['male', 'female'],
     when(value) {
-      return Boolean(value.username.trim());
+      return Boolean(value.username);
     },
   },
   {
@@ -25,7 +25,7 @@ const questions = [
     name: 'age',
     message: 'Enter your age: ',
     when(value) {
-      return Boolean(value.username.trim());
+      return Boolean(value.username);
     },
     validate(value) {
       if (isNaN(value)) {
