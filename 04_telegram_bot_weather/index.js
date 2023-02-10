@@ -1,16 +1,13 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import TelegramBot from 'node-telegram-bot-api';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 
-const apiKey = process.env.API_KEY;
-const chatId = process.env.CHAT_ID;
-const city = process.env.CITY;
-const token = process.env.TELEGRAM_BOT_TOKEN;
+const apiKey = '38d057bd87e726b8b5809fc8240e076a';
+const chatId = 403311177;
+const city = 'kyiv';
+const token = '6011878378:AAFVk5EcQt7iFeCxQJxOg9liOUNqaPFLIU0';
 const bot = new TelegramBot(token, { polling: true });
 
 const URL = `${BASE_URL}?q=${city}&appid=${apiKey}`;

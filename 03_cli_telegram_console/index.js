@@ -1,13 +1,10 @@
 import { program } from 'commander';
 import TelegramBot from 'node-telegram-bot-api';
-import * as dotenv from 'dotenv';
 
-dotenv.config();
+const token = '6011878378:AAFVk5EcQt7iFeCxQJxOg9liOUNqaPFLIU0';
+const chatId = 403311177;
 
-const token = process.env.TELEGRAM_BOT_TOKEN;
-const chatId = process.env.CHAT_ID;
-
-const bot = new TelegramBot(token);
+const bot = new TelegramBot(token, { polling: true });
 
 program
   .command('message <message>')

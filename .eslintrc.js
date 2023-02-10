@@ -14,5 +14,6 @@ module.exports = {
     'no-restricted-globals': ['error', 'event'],
     'no-console': 'off',
     'no-loop-func': 'off',
+    'no-plusplus': 'off',
   },
 };
