@@ -15,5 +15,6 @@ module.exports = {
     'no-console': 'off',
     'no-loop-func': 'off',
     'no-plusplus': 'off',
+    camelcase: 'off',
   },
 };

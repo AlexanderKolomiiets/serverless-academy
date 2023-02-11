@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import axios from 'axios';
 import TelegramBot from 'node-telegram-bot-api';
 
