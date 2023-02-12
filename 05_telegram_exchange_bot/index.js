@@ -26,27 +26,21 @@ bot.sendMessage(chatId, 'Privat exchange rates:', {
   },
 });
 
-bot.on('message', (msg) => {
-  if (msg.text === 'Currency rates') {
-    bot.sendMessage(chatId, 'Select currency:', {
-      reply_markup: {
-        keyboard: [['USD'], ['EUR']],
-        resize_keyboard: true,
-      },
-    });
-  }
+bot.onText(/Currency rates/, () => {
+  bot.sendMessage(chatId, 'Select currency:', {
+    reply_markup: {
+      keyboard: [['USD'], ['EUR']],
+      resize_keyboard: true,
+    },
+  });
 });
 
-bot.on('message', async (msg) => {
-  if (msg.text === 'USD') {
-    const rates = await getExchangeRates(msg.text);
-    bot.sendMessage(chatId, rates);
-  }
+bot.onText(/USD/, async (data) => {
+  const rates = await getExchangeRates(data.text);
+  bot.sendMessage(chatId, rates);
 });
 
-bot.on('message', async (msg) => {
-  if (msg.text === 'EUR') {
-    const rates = await getExchangeRates(msg.text);
-    bot.sendMessage(chatId, rates);
-  }
+bot.onText(/EUR/, async (data) => {
+  const rates = await getExchangeRates(data.text);
+  bot.sendMessage(chatId, rates);
 });
