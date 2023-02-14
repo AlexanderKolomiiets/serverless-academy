@@ -5,7 +5,7 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 
 const apiKey = '38d057bd87e726b8b5809fc8240e076a';
 const chatId = 403311177;
-const city = 'kyiv';
+const city = 'Kyiv';
 const token = '6011878378:AAFVk5EcQt7iFeCxQJxOg9liOUNqaPFLIU0';
 const bot = new TelegramBot(token, { polling: true });
 
@@ -18,16 +18,16 @@ const getWeatherForecast = async () => {
   return res.data.list.slice(0, 12);
 };
 
-bot.sendMessage(chatId, 'Weather forecast in Kyiv:', {
+bot.sendMessage(chatId, `Weather forecast in ${city}:`, {
   reply_markup: {
-    keyboard: [['Forecast in Kyiv']],
+    keyboard: [[`Forecast in ${city}`]],
     resize_keyboard: true,
   },
 });
 
 bot.on('message', (msg) => {
-  if (msg.text === 'Forecast in Kyiv') {
-    bot.sendMessage(chatId, 'Select time interval:', {
+  if (msg.text === `Forecast in ${city}`) {
+    bot.sendMessage(msg.chat.id, 'Select time interval:', {
       reply_markup: {
         keyboard: [['at intervals of 3 hours'], ['at intervals of 6 hours']],
         resize_keyboard: true,
@@ -68,6 +68,6 @@ bot.on('message', async (msg) => {
       + `💨 Wind: ${speed} Km/h\n\n`;
     }
 
-    bot.sendMessage(chatId, data);
+    bot.sendMessage(msg.chat.id, data);
   }
 });

@@ -48,8 +48,7 @@ const question = () => {
     (answer) => {
       const arr = answer.trim().split(' ');
       if (answer === 'exit') {
-        terminal.close();
-        return;
+        process.exit();
       }
       if (!answer.trim()) {
         console.log('Don`t enter empty value. Try again');
