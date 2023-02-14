@@ -34,7 +34,7 @@ const getExchangeRates = async (currency) => {
 
 bot.sendMessage(chatId, 'Welcome, choose an option', {
   reply_markup: {
-    keyboard: [[`Forecast in ${city}`], ['Currencies']],
+    keyboard: [[`Forecast in ${city}`], ['Exchange rates']],
     resize_keyboard: true,
   },
 });
@@ -87,7 +87,7 @@ bot.on('message', async (msg) => {
 });
 
 bot.on('message', (msg) => {
-  if (msg.text === 'Currencies') {
+  if (msg.text === 'Exchange rates') {
     bot.sendMessage(msg.chat.id, 'Select currency:', {
       reply_markup: {
         keyboard: [['USD'], ['EUR'], ['Previous menu']],
@@ -107,7 +107,7 @@ bot.on('message', async (msg) => {
 bot.onText(/Previous menu/, (msg) => {
   bot.sendMessage(msg.chat.id, 'Please, choose an option', {
     reply_markup: {
-      keyboard: [[`Forecast in ${city}`], ['Currencies']],
+      keyboard: [[`Forecast in ${city}`], ['Exchange rates']],
       resize_keyboard: true,
     },
   });
