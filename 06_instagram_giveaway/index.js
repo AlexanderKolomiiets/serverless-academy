@@ -1,28 +1,30 @@
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 
-const users = {};
-const usernames = [];
-for (let i = 0; i <= 19; i++) {
-  const usernameFile = readFileSync(`./usernames/out${i}.txt`, 'utf8');
-  const uniqueUsers = [...new Set(usernameFile.split('\n'))];
+const folder = './usernames/';
+const userOccursCount = {};
+
+const files = readdirSync(folder).map((file) => file);
+
+files.forEach((file) => {
+  const usernamesFile = readFileSync(`${folder + file}`, 'utf8');
+  const uniqueUsers = [...new Set(usernamesFile.split('\n'))];
   uniqueUsers.forEach((user) => {
-    if (users[user]) {
-      users[user]++;
+    if (userOccursCount[user]) {
+      userOccursCount[user]++;
     } else {
-      users[user] = 1;
+      userOccursCount[user] = 1;
     }
-    usernames.push(user);
   });
-}
+});
 
 const uniqueValues = () => {
-  console.log([...new Set(usernames)].length);
+  console.log(Object.keys(userOccursCount).length);
 };
 
 const existInAllFiles = () => {
   let counter = 0;
-  for (const key in users) {
-    if (users[key] === 20) {
+  for (const key in userOccursCount) {
+    if (userOccursCount[key] === 20) {
       counter++;
     }
   }
@@ -31,8 +33,8 @@ const existInAllFiles = () => {
 
 const existInAtleastTen = () => {
   let counter = 0;
-  for (const key in users) {
-    if (users[key] >= 10) {
+  for (const key in userOccursCount) {
+    if (userOccursCount[key] >= 10) {
       counter++;
     }
   }
