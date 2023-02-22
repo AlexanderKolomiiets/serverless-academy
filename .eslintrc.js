@@ -16,6 +16,7 @@ module.exports = {
     'no-loop-func': 'off',
     'no-plusplus': 'off',
     'no-restricted-syntax': 'off',
+    'no-underscore-dangle': 'off',
     camelcase: 'off',
   },
 };
