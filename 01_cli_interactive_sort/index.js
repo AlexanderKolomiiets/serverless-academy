@@ -44,7 +44,7 @@ function getUniqueValues(array) {
 
 const question = () => {
   terminal.question(
-    'Hello. Enter 10 words or digits dividing them in spaces: ',
+    'Hi. Enter 10 words or digits dividing them in spaces: ',
     (answer) => {
       const arr = answer.trim().split(' ');
       if (answer === 'exit') {
